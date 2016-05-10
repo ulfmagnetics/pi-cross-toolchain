@@ -12,9 +12,9 @@ RUN dpkg --add-architecture armhf && apt-get update && apt-get install -y crossb
 # create & get cross user and drop root privileges [2]
 RUN groupadd --system cross \
 && useradd --create-home --system --gid cross --groups sudo --uid 1000 cross;
+RUN echo "cross:pi-cross" | chpasswd;
 USER cross
 ENV HOME=/home/cross
-
 
 # [1] http://hackaday.com/2016/02/03/code-craft-cross-compiling-for-the-raspberry-pi/
 # [2] https://github.com/Ogeon/rust-on-raspberry-pi
