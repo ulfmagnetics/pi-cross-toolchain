@@ -1,13 +1,15 @@
-FROM debian:jessie
+# pi tools depend on a 32-bit architecture :(
+FROM 32bit/debian:jessie
 
 # install debian dependencies before we lose root privileges [2]
 RUN apt-get update \
-&& apt-get install -y sudo git build-essential file wget curl python libjemalloc1 llvm pkg-config;
+&& apt-get install -y sudo git build-essential unzip vim file wget curl python libjemalloc1 llvm pkg-config;
 
-# add cross-compilation support for armhf [3]
-RUN echo "deb http://emdebian.org/tools/debian/ jessie main" > /etc/apt/sources.list.d/crosstools.list;
-RUN curl http://emdebian.org/tools/debian/emdebian-toolchain-archive.key | apt-key add -;
-RUN dpkg --add-architecture armhf && apt-get update && apt-get install -y crossbuild-essential-armhf
+# download the raspberry pi tools from github and set ENV vars
+RUN cd /opt && wget -nv https://github.com/raspberrypi/tools/archive/master.zip && unzip master.zip && mv tools-master pi-tools
+ENV PITOOLS_ROOT=/opt/pi-tools
+ENV CPP=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-g++
+ENV CC=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-gcc
 
 # create & get cross user and drop root privileges [2]
 RUN groupadd --system cross \
