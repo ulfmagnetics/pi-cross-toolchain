@@ -17,7 +17,18 @@ RUN groupadd --system cross \
 RUN echo "cross:pi-cross" | chpasswd;
 USER cross
 ENV HOME=/home/cross
+ENV USER=cross
+
+# install rust via rustup and configure cross-compilation for raspberry pi [4]
+RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
+RUN /bin/bash -c 'source $HOME/.cargo/env && rustup target add arm-unknown-linux-gnueabi'
+COPY cargo-config $HOME/.cargo/config
+
+ENV PATH $HOME/.cargo/bin:$PATH
+WORKDIR /home/cross
+ENTRYPOINT ["/bin/bash"]
 
 # [1] http://hackaday.com/2016/02/03/code-craft-cross-compiling-for-the-raspberry-pi/
 # [2] https://github.com/Ogeon/rust-on-raspberry-pi
 # [3] https://wiki.debian.org/CrossToolchains
+# [4] https://github.com/rust-lang-nursery/rustup.rs
