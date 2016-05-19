@@ -8,7 +8,8 @@ RUN apt-get update \
 # download the raspberry pi tools from github and set ENV vars
 RUN cd /opt && wget -nv https://github.com/raspberrypi/tools/archive/master.zip && unzip master.zip && mv tools-master pi-tools
 ENV PITOOLS_ROOT=/opt/pi-tools
-ENV CPP=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-g++
+ENV CPP=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-cpp
+ENV CXX=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-g++
 ENV CC=$PITOOLS_ROOT/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-gcc
 
 # create & get cross user and drop root privileges [2]
