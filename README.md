@@ -10,13 +10,13 @@ See Dockerfile for more information, sources, etc.
 
 To build the docker image:
 
-`docker build --tag pi-cross-32bit .`
+`docker build --tag pi-cross .`
 
 ## Usage
 
 To open a login shell with a project directory mounted:
 
-    docker run -i -t --entrypoint=/bin/bash --volume ~/src/pizero/hello-project/:/home/cross/project pi-cross-32bit
+    docker run -i -t --volume ~/src/pizero/hello-project/:/home/cross/project pi-cross
 
 The container will have env variables $CPP and $CC set to point to the appropriate
 executables in the /opt/pi-tools directory. Use them like this:
