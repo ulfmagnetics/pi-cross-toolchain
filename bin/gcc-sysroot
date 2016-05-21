@@ -1,2 +1,2 @@
 #!/bin/bash
-arm-bcm2708-linux-gnueabi-gcc --sysroot=/home/cross/pi-tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/arm-bcm2708-linux-gnueabi/sysroot "$@"
+arm-linux-gnueabihf-gcc --sysroot=/home/cross/pi-tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/arm-linux-gnueabihf/sysroot "$@"

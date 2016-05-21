@@ -1,5 +1,5 @@
 [build]
-target = "arm-unknown-linux-gnueabi"
+target = "arm-unknown-linux-gnueabihf"
 
-[target.arm-unknown-linux-gnueabi]
-linker = "/home/cross/pi-tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-gcc"
+[target.arm-unknown-linux-gnueabihf]
+linker = "/home/cross/pi-tools/arm-bcm2708/arm-rpi-4.9.3-linux-gnueabihf/bin/arm-linux-gnueabihf-gcc"
