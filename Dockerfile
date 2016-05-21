@@ -26,6 +26,7 @@ COPY bin/gcc-sysroot $TOOLCHAIN
 ENV CC=$TOOLCHAIN/gcc-sysroot
 COPY bin/arm-bcm2708-pkg-config $TOOLCHAIN
 ENV PKG_CONFIG=$TOOLCHAIN/arm-bcm2708-pkg-config
+ENV PKG_CONFIG_ALLOW_CROSS=1
 
 # install rust via rustup and configure cross-compilation for raspberry pi [4]
 # FIXME should we be using arm-unknown-linux-gnueabihf (hard float version) instead?

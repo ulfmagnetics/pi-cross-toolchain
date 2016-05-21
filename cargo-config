@@ -2,4 +2,4 @@
 target = "arm-unknown-linux-gnueabi"
 
 [target.arm-unknown-linux-gnueabi]
-linker = "/opt/pi-tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-gcc"
+linker = "/home/cross/pi-tools/arm-bcm2708/arm-bcm2708-linux-gnueabi/bin/arm-bcm2708-linux-gnueabi-gcc"
