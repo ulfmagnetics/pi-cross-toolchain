@@ -4,6 +4,9 @@ This is an attempt to create a dockerized process for cross-compiling code
 for the Raspberry Pi's ARM architecture. The docker image is based on debian
 jessie.
 
+Much of this code is based closely on the project from the Rust on Raspberry Pi
+project over at https://github.com/Ogeon/rust-on-raspberry-pi.
+
 See Dockerfile for more information, sources, etc.
 
 ## Installation
