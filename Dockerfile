@@ -16,8 +16,6 @@ WORKDIR /home/cross
 # install rust via rustup and configure cross-compilation for raspberry pi [4]
 RUN curl https://sh.rustup.rs -sSf | sh -s -- -y
 RUN /bin/bash -c 'source $HOME/.cargo/env && rustup target add arm-unknown-linux-gnueabihf'
-COPY cargo-config $HOME/.cargo/config
-COPY bin $HOME/bin
 
 # download the raspberry pi tools from github and set up the toolchain
 RUN wget -nv https://github.com/raspberrypi/tools/archive/master.zip && unzip master.zip && mv tools-master pi-tools
@@ -32,6 +30,9 @@ ENV CC=$TOOLCHAIN/gcc-sysroot
 COPY bin/pi-cross-pkg-config $TOOLCHAIN
 ENV PKG_CONFIG=$TOOLCHAIN/pi-cross-pkg-config
 ENV PKG_CONFIG_ALLOW_CROSS=1
+
+COPY cargo-config $HOME/.cargo/config
+COPY bin $HOME/bin
 
 ENV PATH $HOME/.cargo/bin:$HOME/bin:$TOOLCHAIN:$PATH
 ENTRYPOINT ["run.sh"]
